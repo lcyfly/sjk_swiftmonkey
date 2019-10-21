@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SwiftMonkey  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="SwiftMonkey  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">SwiftMonkey Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">SwiftMonkey Reference</a>
+        <img id="carat" src="img/carat.png" />
+        SwiftMonkey  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Monkey.html">Monkey</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='swiftmonkey' class='heading'>SwiftMonkey</h1>
+
+<p>This project is a framework for generating randomised user input
+in iOS apps. This kind of monkey testing is useful for
+stress-testing apps and finding rare crashes.</p>
+
+<p>It also contains a related framework called SwiftMonkeyPaws, which
+provides visualisation of the generated events. This greatly
+increases the usefulness of your randomised testing, as you can
+see what touches caused any crash you may encounter.</p>
+<h2 id='why-use-swiftmonkey' class='heading'>Why Use SwiftMonkey?</h2>
+
+<ul>
+<li>When testing your UI, it&rsquo;s very easy to think about how to test
+how things <em>should</em> work, but do you struggle to figure out
+what kind of thing might <em>not</em> work?</li>
+<li>Ever showed your app to someone who proceeded to bang away at the
+screen and immediately crashed it by doing something you had never
+thought of?</li>
+<li>Do you want to feel a bit more confident about your app&rsquo;s stability?</li>
+<li>Do you have rare crashes that you just can&rsquo;t reproduce?</li>
+<li>Do you have memory leaks that take a long time to manifest
+themselves, and require lots of UI actions?</li>
+</ul>
+
+<p>Randomised testing will help you with all of these!</p>
+
+<p>SwiftMonkey is inspired by and has similar goals to
+<a href="https://github.com/jonathanpenn/ui-auto-monkey">UI AutoMonkey</a>, but is integrated into the Xcode UI testing
+framework, providing better opportunities to debug.</p>
+
+<p>Also, it is fun to look at:</p>
+
+<p><img src="https://thumbs.gfycat.com/IndolentTallFoxterrier-size_restricted.gif" height="480"></p>
+<h2 id='quick-start' class='heading'>Quick Start</h2>
+
+<p>To see for yourself how this framework works, just grab the code
+and open <code>SwiftMonkeyExample/SwiftMonkeyExample.xcodeproj</code>. Then press <code>Cmd-U</code> to run the UI test.</p>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>As a high-level overview, add <code>SwiftMonkey.framework</code> to your
+UI test target. Then add a test that creates a <code><a href="Classes/Monkey.html">Monkey</a></code>
+object and uses it to generate events.</p>
+
+<p>Optionally, you also add the <code>SwiftMonkeyPaws.framework</code> to your
+main app, and create a <code>MonkeyPaws</code> object to enable visualisation.
+You probably only want to do this for debug builds, or when a
+specific command line flag is used.</p>
+<h3 id='requirements' class='heading'>Requirements</h3>
+
+<p>SwiftMonkey uses Swift 3.0. It has no dependencies other than
+iOS itself (8.0 and up should work). SwiftMonkeyPaws doesn&rsquo;t
+have any dependencies, either; you can even use on its own,
+without SwiftMonkey.</p>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>You can install the frameworks using <a href="https://cocoapods.org/">CocoaPods</a>. Assuming
+that you&rsquo;ve named your main app and test targets <q>App</q> and <q>Tests</q>, you
+can use something like this in your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">target</span> <span class="s2">"App"</span> <span class="k">do</span>
+    <span class="n">pod</span> <span class="s2">"SwiftMonkeyPaws"</span><span class="p">,</span> <span class="s2">"~&gt; 1.0"</span>
+<span class="k">end</span>
+
+<span class="n">target</span> <span class="s2">"Tests"</span> <span class="k">do</span>
+    <span class="n">pod</span> <span class="s2">"SwiftMonkey"</span><span class="p">,</span> <span class="s2">"~&gt; 1.0"</span>
+<span class="k">end</span>
+</code></pre>
+<h3 id='manual-installation' class='heading'>Manual Installation</h3>
+
+<p>Copy the <code>SwiftMonkey</code> and <code>SwiftMonkeyPaws</code> folders into your
+project. Next, drag the <code>xcodeproj</code> files into your project.</p>
+
+<p>Then, for SwiftMonkey, add <code>SwiftMonkey.framework</code> as a
+dependency for your test target, and add a Copy Files build
+phase to copy it into <code>Frameworks</code>.</p>
+
+<p>For SwiftMonkeyPaws, adding <code>SwiftMonkeyPaws.framework</code> to the
+Embedded Binaries section of your app target is enough.</p>
+
+<p>(You can also just directly link the Swift files, if you do not
+want to use frameworks.)</p>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p>As of this writing, the Swift Package Manager doesn&rsquo;t support
+iOS projects. SPM package files have experimentally been created,
+but obviously don&rsquo;t really work yet.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='swiftmonkey' class='heading'>SwiftMonkey</h3>
+
+<p>To do monkey testing, <code>import SwiftMonkey</code>, then create a new
+test case that uses the <code><a href="Classes/Monkey.html">Monkey</a></code> object to configure and run
+the input event generation. Here is a simple example:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">testMonkey</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">application</span> <span class="o">=</span> <span class="kt">XCUIApplication</span><span class="p">()</span>
+
+    <span class="c1">// Workaround for bug in Xcode 7.3. Snapshots are not properly updated</span>
+    <span class="c1">// when you initially call app.frame, resulting in a zero-sized rect.</span>
+    <span class="c1">// Doing a random query seems to update everything properly.</span>
+    <span class="c1">// TODO: Remove this when the Xcode bug is fixed!</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="nf">descendants</span><span class="p">(</span><span class="nv">matching</span><span class="p">:</span> <span class="o">.</span><span class="n">any</span><span class="p">)</span><span class="o">.</span><span class="nf">element</span><span class="p">(</span><span class="nv">boundBy</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">frame</span>
+
+    <span class="c1">// Initialise the monkey tester with the current device</span>
+    <span class="c1">// frame. Giving an explicit seed will make it generate</span>
+    <span class="c1">// the same sequence of events on each run, and leaving it</span>
+    <span class="c1">// out will generate a new sequence on each run.</span>
+    <span class="k">let</span> <span class="nv">monkey</span> <span class="o">=</span> <span class="kt">Monkey</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="n">application</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+    <span class="c1">//let monkey = Monkey(seed: 123, frame: application.frame)</span>
+
+    <span class="c1">// Add actions for the monkey to perform. We just use a</span>
+    <span class="c1">// default set of actions for this, which is usually enough.</span>
+    <span class="c1">// Use either one of these, but maybe not both.</span>
+    <span class="c1">// XCTest private actions seem to work better at the moment.</span>
+    <span class="c1">// UIAutomation actions seem to work only on the simulator.</span>
+    <span class="n">monkey</span><span class="o">.</span><span class="nf">addDefaultXCTestPrivateActions</span><span class="p">()</span>
+    <span class="c1">//monkey.addDefaultUIAutomationActions()</span>
+
+    <span class="c1">// Occasionally, use the regular XCTest functionality</span>
+    <span class="c1">// to check if an alert is shown, and click a random</span>
+    <span class="c1">// button on it.</span>
+    <span class="n">monkey</span><span class="o">.</span><span class="nf">addXCTestTapAlertAction</span><span class="p">(</span><span class="nv">interval</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">application</span><span class="p">:</span> <span class="n">application</span><span class="p">)</span>
+
+    <span class="c1">// Run the monkey test indefinitely.</span>
+    <span class="n">monkey</span><span class="o">.</span><span class="nf">monkeyAround</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The <code><a href="Classes/Monkey.html">Monkey</a></code> object allows you not only to add the built-in
+event generators, but also any block of your
+own to be executed either randomly or at set intervals. In
+these blocks you can do whatever you want, including (but not
+only) generate more input events.</p>
+
+<p>Documentation for this is limited at the moment, so please
+refer to <code>Monkey.swift</code> and its extensions for examples of
+how to use the more advanced functionality if you need it.</p>
+<h3 id='swiftmonkeypaws' class='heading'>SwiftMonkeyPaws</h3>
+
+<p>The simplest way to enable the visualisation in your app is to
+first <code>import SwiftMonkeyPaws</code>, then do the following somewhere
+early on in your program execution:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">paws</span><span class="p">:</span> <span class="kt">MonkeyPaws</span><span class="p">?</span>
+
+<span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationLaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kt">CommandLine</span><span class="o">.</span><span class="n">arguments</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="s">"--MonkeyPaws"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">paws</span> <span class="o">=</span> <span class="kt">MonkeyPaws</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="n">window</span><span class="o">!</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>(This example uses <code>application(_, didFinishLaunchingWithOptions)</code>,
+but any time after you have a UIWindow will do. It also only
+instatiates the visualisation if a certain command line flag
+is passed, so that it can be enabled only for test runs.)</p>
+
+<p>This call will swizzle some methods in UIApplication to capture
+UIEvents. If you would rather not do this, or if you already have
+a source of UIEvents, you can pass the following option to <code>init</code>
+to disable swizzling:</p>
+<pre class="highlight swift"><code><span class="n">paws</span> <span class="o">=</span> <span class="kt">MonkeyPaws</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="n">window</span><span class="o">!</span><span class="p">,</span> <span class="nv">tapUIApplication</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+</code></pre>
+
+<p>Then you can pass in events with the following call:</p>
+<pre class="highlight swift"><code><span class="n">paws</span><span class="p">?</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="nv">event</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="c1">// event is UIEvent</span>
+</code></pre>
+<h2 id='contributing' class='heading'>Contributing</h2>
+
+<p>Feel free to file issues and send pull requests for this
+project! It is very new and not overly organised yet, so be
+bold and go ahead. We will sort out the details as we go along.</p>
+
+<p>Code style is currently just four-space identation and regular
+Apple Swift formatting.</p>
+
+<p>Also, we have adopted the Contributor Covenant as the code
+of conduct for this project:</p>
+
+<p><a href="http://contributor-covenant.org/version/1/4/">http://contributor-covenant.org/version/1/4/</a></p>
+<h3 id='thanks-to' class='heading'>Thanks to</h3>
+
+<ul>
+<li>The Zalando Open Source Guild for helping get this project
+off the ground.</li>
+<li>João Nunes for help with documentation.</li>
+<li>Jakub Mucha for bugfixing.</li>
+</ul>
+<h2 id='todo' class='heading'>TODO</h2>
+<h3 id='swiftmonkey' class='heading'>SwiftMonkey</h3>
+
+<ul>
+<li>Write more documentation.</li>
+<li>Add more input event actions.</li>
+<li>Add randomised testing using public XCTest APIs instead of private ones.
+
+<ul>
+<li>Find clickable view and click them directly instead of
+clicking random locations, to compensate for the slow
+event generation.</li>
+</ul></li>
+<li>Fix swipe actions to avoid pulling out the top and bottom panels. (This
+can cause the monkey to escape from your app, which can be problematic!)</li>
+<li>Generally, find a quick way to see if the monkey manages to leave the
+application.</li>
+<li>Find out how to do device rotations using XCTest private API.</li>
+<li>Find out why UIAutomation actions do not work on device, but only on the
+simulator.</li>
+<li>Investigate other methods of generating input events that do not rely
+on private APIs.</li>
+<li>Once Swift Package Manager has iOS support, update project
+to support it properly.</li>
+</ul>
+<h3 id='swiftmonkeypaws' class='heading'>SwiftMonkeyPaws</h3>
+
+<ul>
+<li>Add more customisability for the visualisation.</li>
+</ul>
+<h3 id='swiftmonkeyexample' class='heading'>SwiftMonkeyExample</h3>
+
+<ul>
+<li>Add more UI elements, views and controls to make the example
+look more interesting.</li>
+<li>Maybe add some actual crashes that the monkey testing can find?</li>
+</ul>
+<h2 id='contact' class='heading'>Contact</h2>
+
+<p>This software was originally written by Dag Ågren
+(<a href="mailto:dag.agren@zalando.fi">dag.agren@zalando.fi</a>) for Zalando SE. This email address serves
+as the main contact address for this project.</p>
+
+<p>Bug reports and feature requests are more likely to be addressed
+if posted as issues here on GitHub.</p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>The MIT License (MIT) Copyright © 2016 Zalando SE, <a href="https://tech.zalando.com">https://tech.zalando.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">Dag Ågren</a>. All rights reserved. (Last updated: 2017-10-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
