@@ -1,5 +1,5 @@
 import XCTest
-import SwiftMonkey
+
 class SwiftMonkeyExampleUITests: XCTestCase {
     override func setUp() {
         super.setUp()

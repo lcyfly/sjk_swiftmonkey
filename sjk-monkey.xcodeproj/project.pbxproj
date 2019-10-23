@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B16B36A422E0D87D00D755A4 /* SwiftMonkey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16B36A322E0D86A00D755A4 /* SwiftMonkey.framework */; };
-		B194653B22F1D7CF00168387 /* SwiftMonkeyPaws.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B116690A22E59DDE00CD155B /* SwiftMonkeyPaws.framework */; };
+		B15CBEDF236064D8003BDD3A /* MonkeyXCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CBEDA236064D7003BDD3A /* MonkeyXCTest.swift */; };
+		B15CBEE0236064D8003BDD3A /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CBEDB236064D7003BDD3A /* Random.swift */; };
+		B15CBEE1236064D8003BDD3A /* MonkeyUIAutomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CBEDC236064D7003BDD3A /* MonkeyUIAutomation.swift */; };
+		B15CBEE2236064D8003BDD3A /* Monkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CBEDD236064D7003BDD3A /* Monkey.swift */; };
+		B15CBEE3236064D8003BDD3A /* MonkeyXCTestPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CBEDE236064D7003BDD3A /* MonkeyXCTestPrivate.swift */; };
 		B1BD83FB22E0CCFC005145BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD83FA22E0CCFC005145BB /* AppDelegate.m */; };
 		B1BD83FE22E0CCFC005145BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD83FD22E0CCFC005145BB /* ViewController.m */; };
 		B1BD840122E0CCFC005145BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BD83FF22E0CCFC005145BB /* Main.storyboard */; };
@@ -20,20 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B116690922E59DDE00CD155B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B116690422E59DDE00CD155B /* SwiftMonkeyPaws.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = OBJ_12;
-			remoteInfo = SwiftMonkeyPaws;
-		};
-		B16B36A222E0D86A00D755A4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B16B369E22E0D86A00D755A4 /* SwiftMonkey.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = OBJ_16;
-			remoteInfo = SwiftMonkey;
-		};
 		B1BD840F22E0CD00005145BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B1BD83EE22E0CCFC005145BB /* Project object */;
@@ -51,8 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B116690422E59DDE00CD155B /* SwiftMonkeyPaws.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftMonkeyPaws.xcodeproj; path = "../SwiftMonkey-master/SwiftMonkeyPaws/SwiftMonkeyPaws.xcodeproj"; sourceTree = "<group>"; };
-		B16B369E22E0D86A00D755A4 /* SwiftMonkey.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftMonkey.xcodeproj; path = "../SwiftMonkey-master/SwiftMonkey/SwiftMonkey.xcodeproj"; sourceTree = "<group>"; };
+		B15CBEDA236064D7003BDD3A /* MonkeyXCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonkeyXCTest.swift; sourceTree = "<group>"; };
+		B15CBEDB236064D7003BDD3A /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		B15CBEDC236064D7003BDD3A /* MonkeyUIAutomation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonkeyUIAutomation.swift; sourceTree = "<group>"; };
+		B15CBEDD236064D7003BDD3A /* Monkey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monkey.swift; sourceTree = "<group>"; };
+		B15CBEDE236064D7003BDD3A /* MonkeyXCTestPrivate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonkeyXCTestPrivate.swift; sourceTree = "<group>"; };
 		B1BD83F622E0CCFC005145BB /* sjk-monkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sjk-monkey.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BD83F922E0CCFC005145BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B1BD83FA22E0CCFC005145BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -76,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B194653B22F1D7CF00168387 /* SwiftMonkeyPaws.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,29 +82,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B16B36A422E0D87D00D755A4 /* SwiftMonkey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B116690522E59DDE00CD155B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B116690A22E59DDE00CD155B /* SwiftMonkeyPaws.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B16B369F22E0D86A00D755A4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B16B36A322E0D86A00D755A4 /* SwiftMonkey.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B1A72DAE22E0D2B1001ED9F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,8 +98,6 @@
 		B1BD83ED22E0CCFC005145BB = {
 			isa = PBXGroup;
 			children = (
-				B116690422E59DDE00CD155B /* SwiftMonkeyPaws.xcodeproj */,
-				B16B369E22E0D86A00D755A4 /* SwiftMonkey.xcodeproj */,
 				B1BD83F822E0CCFC005145BB /* sjk-monkey */,
 				B1BD841122E0CD00005145BB /* sjk-monkeyTests */,
 				B1BD842222E0CF91005145BB /* sjk-monkeyUITests */,
@@ -172,6 +144,11 @@
 		B1BD842222E0CF91005145BB /* sjk-monkeyUITests */ = {
 			isa = PBXGroup;
 			children = (
+				B15CBEDD236064D7003BDD3A /* Monkey.swift */,
+				B15CBEDC236064D7003BDD3A /* MonkeyUIAutomation.swift */,
+				B15CBEDA236064D7003BDD3A /* MonkeyXCTest.swift */,
+				B15CBEDE236064D7003BDD3A /* MonkeyXCTestPrivate.swift */,
+				B15CBEDB236064D7003BDD3A /* Random.swift */,
 				B1BD842322E0CF91005145BB /* sjk_monkeyUITests.swift */,
 				B1BD842522E0CF91005145BB /* Info.plist */,
 			);
@@ -268,16 +245,6 @@
 			mainGroup = B1BD83ED22E0CCFC005145BB;
 			productRefGroup = B1BD83F722E0CCFC005145BB /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = B16B369F22E0D86A00D755A4 /* Products */;
-					ProjectRef = B16B369E22E0D86A00D755A4 /* SwiftMonkey.xcodeproj */;
-				},
-				{
-					ProductGroup = B116690522E59DDE00CD155B /* Products */;
-					ProjectRef = B116690422E59DDE00CD155B /* SwiftMonkeyPaws.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B1BD83F522E0CCFC005145BB /* sjk-monkey */,
@@ -286,23 +253,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B116690A22E59DDE00CD155B /* SwiftMonkeyPaws.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftMonkeyPaws.framework;
-			remoteRef = B116690922E59DDE00CD155B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B16B36A322E0D86A00D755A4 /* SwiftMonkey.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftMonkey.framework;
-			remoteRef = B16B36A222E0D86A00D755A4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B1BD83F422E0CCFC005145BB /* Resources */ = {
@@ -355,6 +305,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BD842422E0CF91005145BB /* sjk_monkeyUITests.swift in Sources */,
+				B15CBEE1236064D8003BDD3A /* MonkeyUIAutomation.swift in Sources */,
+				B15CBEDF236064D8003BDD3A /* MonkeyXCTest.swift in Sources */,
+				B15CBEE3236064D8003BDD3A /* MonkeyXCTestPrivate.swift in Sources */,
+				B15CBEE0236064D8003BDD3A /* Random.swift in Sources */,
+				B15CBEE2236064D8003BDD3A /* Monkey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
